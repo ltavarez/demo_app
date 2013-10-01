@@ -9,6 +9,7 @@ gem 'sqlite3'
 
 gem 'pg'
 
+gem "audited", "~> 3.0.0"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
 
