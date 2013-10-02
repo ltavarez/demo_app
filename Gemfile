@@ -7,6 +7,10 @@ gem 'bootstrap-sass', '2.3.2.0'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
+gem 'paper_trail', '>= 3.0.0.beta1'
+
+gem 'bcrypt-ruby', '3.0.1'
+
 gem 'pg'
 
 gem "audited", "~> 3.0.0"
@@ -31,7 +35,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
+# bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
 
