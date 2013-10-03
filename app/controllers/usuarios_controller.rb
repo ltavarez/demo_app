@@ -7,4 +7,20 @@ class UsuariosController < ApplicationController
     @usuario = Usuario.new
   end
 
+  def create
+    @usuario = Usuario.new(usuario_params)
+    if @usuario.save
+      flash[:success] = "User was successfully created"
+      redirect_to @usuario
+      else
+      render 'new'
+    end
+  end
+
+  private
+
+  def usuario_params
+    params.require(:usuario).permit(:nombre,:email,:password)
+  end
+
 end

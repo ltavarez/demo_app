@@ -1,5 +1,18 @@
 <% provide(:title, 'Sign up') %> <h1>Sign up</h1>
 
+<% if @usuario.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      The form contains <%= pluralize(@usuario.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @usuario.errors.full_messages.each do |msg| %>
+      <li>* <%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="row">
 	<div class="span6 offset3">
 		<%= form_for(@usuario) do |f| %>
