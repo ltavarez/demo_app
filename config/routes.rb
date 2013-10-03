@@ -6,8 +6,10 @@ DemoApp::Application.routes.draw do
   match "/home",  to: "static_page#home",  via: 'get'
   match '/help',  to: 'static_page#help', via: 'get'
   match '/about', to: 'static_page#about',via: 'get'
+  match '/sessions', to: 'sessions#destroy',via: 'get'
 
   resources :microposts
+  resources :sessions, only: [:new,:create,:destroy]
   resources :users
   resources :usuarios
 # The priority is based upon order of creation: first created -> highest priority.
