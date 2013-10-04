@@ -6,7 +6,7 @@
 development:
   #adapter: sqlite3
   adapter: postgresql
-  database: microBlog2
+  database: microBlog
   pool: 5
   host: localhost
   timeout: 5000
@@ -24,7 +24,7 @@ test:
 
 production:
   adapter: postgresql
-  database: microBlog2
+  database: microBlog
   pool: 5
   host: localhost
   timeout: 5000

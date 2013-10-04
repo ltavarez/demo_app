@@ -11,6 +11,10 @@ gem 'paper_trail', '>= 3.0.0.beta1'
 
 gem 'bcrypt-ruby', '3.0.1'
 
+gem 'will_paginate', '3.0.4'
+
+gem 'bootstrap-will_paginate', '0.0.9'
+
 gem 'pg'
 
 gem "audited", "~> 3.0.0"

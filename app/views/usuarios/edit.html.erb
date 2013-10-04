@@ -1,0 +1,37 @@
+
+<% provide(:title, "Edit user") %>
+<h1>Update your profile</h1>
+
+<% if @usuario.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-error">
+      The form contains <%= pluralize(@usuario.errors.count, "error") %>.
+    </div>
+    <ul>
+    <% @usuario.errors.full_messages.each do |msg| %>
+      <li>* <%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(@usuario) do |f| %>
+      
+      <%= f.label :nombre %>
+      <%= f.text_field :nombre %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %><br />
+
+      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+    <%= gravatar_for @usuario %>
+    <a href="http://gravatar.com/emails">change</a>
+  </div>
+</div>
