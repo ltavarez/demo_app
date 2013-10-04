@@ -11,6 +11,13 @@ module SessionsHelper
     cookies.delete(:remember_token)
   end
 
+  def signed_in_user
+    unless signed_in?
+      store_location
+      redirect_to new_session_path, notice: "Please sign in."
+    end
+  end
+
   def signed_in?
     !current_user.nil?
   end
@@ -27,7 +34,7 @@ module SessionsHelper
     remember_token = Usuario.encrypt(cookies[:remember_token])
     @current_user ||= Usuario.find_by(remember_token: remember_token)
   end
-  
+
   def redirect_back_or(default)
     redirect_to(session[:return_to] || default)
     session.delete(:return_to)

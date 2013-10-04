@@ -7,4 +7,28 @@
 
 		</section>
 	</aside>
+	<div class="span8">
+		<% if @usuario.miniposts.any? %>
+		<h3>Microposts (<%= @usuario.miniposts.count %>)</h3>
+		<ol class="microposts">
+			<%= will_paginate @miniposts %>
+			<ol>
+				<% @usuario.miniposts.each do |minipost| %>
+				<li>
+					<span class="content"><%= minipost.content %></span>
+					<span class="timestamp"> Posted <%= time_ago_in_words(minipost.created_at) %> ago. </span>
+					<% if current_user?(minipost.usuario) %>
+					<%= link_to "delete", minipost, method: :delete,
+					data: { confirm: "You sure?" },
+					title: minipost.content %>
+					<% end %>
+				</li>
+				<%end%>
+			</ol>
+		</ol>
+
+		<%= will_paginate @miniposts %>
+		<% end %>
+	</div>
+</div>
 </div>

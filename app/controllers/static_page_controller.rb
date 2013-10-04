@@ -1,11 +1,14 @@
 class StaticPageController < ApplicationController
   def home
-    @nombre = "Leonard"
+    if signed_in?
+      @minipost  = current_user.miniposts.build
+      @feed_items = current_user.feed.paginate(page: params[:page])
+    end
   end
 
   def help
   end
-  
-  def about    
+
+  def about
   end
 end

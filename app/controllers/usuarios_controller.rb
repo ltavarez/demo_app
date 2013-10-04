@@ -9,6 +9,7 @@ class UsuariosController < ApplicationController
 
   def show
     @usuario = Usuario.find(params[:id])
+    @miniposts = @usuario.miniposts.paginate(page: params[:page])
   end
 
   def new
@@ -64,9 +65,9 @@ class UsuariosController < ApplicationController
     @usuario = Usuario.find(params[:id])
     redirect_to(root_url) unless current_user?(@usuario)
   end
-  
+
   def admin_user
-      redirect_to(root_path) unless current_user.admin?
-    end
+    redirect_to(root_path) unless current_user.admin?
+  end
 
 end

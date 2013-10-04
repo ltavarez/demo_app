@@ -5,10 +5,16 @@ class Usuario < ActiveRecord::Base
   validates :email,  presence: true, uniqueness: {case_sensitive: false}
   validates :password, length: { minimum: 6 }
   has_paper_trail
+  has_many :miniposts, dependent: :destroy
   #has_secure_password
   
    def Usuario.new_remember_token
      SecureRandom.urlsafe_base64
+   end
+   
+    # This is preliminary. See "Following users" for the full implementation.
+   def feed    
+    Minipost.where("usuario_id = ?", id)
    end
 
   def Usuario.encrypt(token)
