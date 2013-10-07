@@ -1,7 +1,7 @@
 DemoApp::Application.routes.draw do
-    #get "static_page/home"
-  #get "static_page/help"
-  #get "static_page/about"
+#get "static_page/home"
+#get "static_page/help"
+#get "static_page/about"
   root 'static_page#home'
   match "/home",  to: "static_page#home",  via: 'get'
   match '/help',  to: 'static_page#help', via: 'get'
@@ -10,9 +10,16 @@ DemoApp::Application.routes.draw do
 
   resources :microposts
   resources :sessions, only: [:new,:create,:destroy]
-  resources :users
-  resources :usuarios
+  resources :relationships, only: [:create, :destroy]
   resources :miniposts, only: [:create, :destroy]
+  resources :users
+
+  resources :usuarios do
+    member do
+      get :following, :followers
+    end
+   end
+
 # The priority is based upon order of creation: first created -> highest priority.
 # See how all your routes lay out with "rake routes".
 

@@ -6,7 +6,22 @@
 			<%= @usuario.nombre %> </h1>
 
 		</section>
+		<section>
+			<% @usuario ||= current_user %>
+			<div class="stats">
+				<a href="<%= following_usuario_path(@usuario) %>"> <strong id="following" class="stat"> <%= @usuario.followed_users.count %> </strong> following </a>
+				<a href="<%= followers_usuario_path(@usuario) %>"> <strong id="followers" class="stat"> <%= @usuario.followers.count %> </strong> followers </a>
+			</div>
+		</section>
 	</aside>
+	<div class="span8">
+		<%= form_for(current_user.relationships.build(followed_id: @usuario.id),remote: true) do |f| %>
+		<div>
+			<%= f.hidden_field :followed_id %>
+		</div>
+		<%= f.submit "Follow", class: "btn btn-large btn-primary" %>
+		<% end %>
+	</div>
 	<div class="span8">
 		<% if @usuario.miniposts.any? %>
 		<h3>Microposts (<%= @usuario.miniposts.count %>)</h3>

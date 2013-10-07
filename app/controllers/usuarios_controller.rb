@@ -30,6 +30,20 @@ class UsuariosController < ApplicationController
     @usuario = Usuario.find(params[:id])
   end
 
+ def following
+    @title = "Following"
+    @usuario = Usuario.find(params[:id])
+    @usuarios = @usuario.followed_users.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @usuario = Usuario.find(params[:id])
+    @usuarios = @usuario.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
   def update
     @usuario = Usuario.find(params[:id])
     if @usuario.update_attributes(usuario_params)
@@ -52,7 +66,7 @@ class UsuariosController < ApplicationController
     params.require(:usuario).permit(:nombre,:email,:password)
   end
 
-  # Before filters
+   # Before filters
 
   def signed_in_user
     unless signed_in?
